@@ -25,10 +25,10 @@ public class NOCTerrainBuilder : MonoBehaviour {
 	private GameObject obstacleLevel;
 
 	public void SetupScene() {
-		nx = -lx / 2;
-		px = lx - lx / 2 - 1;
-		nz = -lz / 2;
-		pz = lz - lz / 2 - 1;
+		nx = -lx;
+		px = lx;
+		nz = -lz;
+		pz = lz;
 
 		groundLevel = new GameObject ("GroundLevel");
 		obstacleLevel = new GameObject ("ObstacleLevel");
