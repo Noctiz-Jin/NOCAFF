@@ -40,31 +40,17 @@ public class NOCTerrainBuilder : MonoBehaviour {
 
 	private void SetupGround() {
 		// build ground
-		for (int x = nx; x < px + 1; x++) {
-			for (int z = nz; z < pz + 1; z++) {
-				CreateStaticBlock (x, 0, z, protoBlock, groundLevel);
-			}
-		}
+		CreateYPlane(0, nx, px, nz, pz, protoBlock);
 
 		// build wall invisible
-		for (int x = nx; x < px + 1; x++) {
-			CreateStaticBlock (x, 1, nz - 1, invisibleBlock, obstacleLevel);
-			CreateStaticBlock (x, 1, pz + 1, invisibleBlock, obstacleLevel);
-			CreateStaticBlock (x, 2, nz - 1, invisibleBlock, groundLevel);
-			CreateStaticBlock (x, 2, pz + 1, invisibleBlock, groundLevel);
-			CreateStaticBlock (x, 3, nz - 1, invisibleBlock, groundLevel);
-			CreateStaticBlock (x, 3, pz + 1, invisibleBlock, groundLevel);
-		}
-		for (int z = nz; z < pz + 1; z++) {
-			CreateStaticBlock (nx - 1, 1, z, invisibleBlock, obstacleLevel);
-			CreateStaticBlock (px + 1, 1, z, invisibleBlock, obstacleLevel);
-			CreateStaticBlock (nx - 1, 2, z, invisibleBlock, groundLevel);
-			CreateStaticBlock (px + 1, 2, z, invisibleBlock, groundLevel);
-			CreateStaticBlock (nx - 1, 3, z, invisibleBlock, groundLevel);
-			CreateStaticBlock (px + 1, 3, z, invisibleBlock, groundLevel);
-		}
+		CreateXPlane(nx - 1, 1, 3, nz, pz, invisibleBlock);
+		CreateXPlane(px + 1, 1, 3, nz, pz, invisibleBlock);
+		CreateZPlane(nz - 1, nx, px, 1, 3, invisibleBlock);
+		CreateZPlane(pz + 1, nx, px, 1, 3, invisibleBlock);
+
 	}
 
+	////// Helper Methods //////
 	private void CreateStaticBlock(int x, int y, int z, GameObject material, GameObject parent){
 		CreateBlock (x, y, z, material, parent, true, "Static");
 	}
@@ -85,6 +71,34 @@ public class NOCTerrainBuilder : MonoBehaviour {
 			obstacleGO.tag = tag;
 			block.transform.SetParent (obstacleGO.transform);
 			obstacleGO.transform.SetParent (parent.transform);
+		}
+	}
+
+
+
+	private void CreateXPlane (int x, int ny, int py, int nz, int pz, GameObject block)
+	{
+		CreateRect(x, x, ny, py, nz, pz, block);
+	}
+
+	private void CreateYPlane (int y, int nx, int px, int nz, int pz, GameObject block)
+	{
+		CreateRect(nx, px, y, y, nz, pz, block);
+	}
+
+	private void CreateZPlane (int z, int nx, int px, int ny, int py, GameObject block)
+	{
+		CreateRect(nx, px, ny, py, z, z, block);
+	}
+
+	private void CreateRect (int nx, int px, int ny, int py, int nz, int pz, GameObject block)
+	{
+		for (int x = nx; x < px + 1; x++) {
+			for (int y = ny; y < py + 1; y++) {
+				for (int z = nz; z < pz + 1; z++) {
+					CreateStaticBlock (x, y, z, block, groundLevel);
+				}
+			}
 		}
 	}
 }

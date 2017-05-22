@@ -62,6 +62,7 @@
      <Compile Include="Assets\Scripts\GameManagement\NOCLoader.cs" />
      <Compile Include="Assets\Scripts\GameManagement\NOCTerrainBuilder.cs" />
      <Compile Include="Assets\Scripts\GameManagement\NOCWorldManager.cs" />
+     <Compile Include="Assets\Scripts\NOCUtility.cs" />
      <None Include="Assets\Extern\Lobby\Documentation.txt" />
      <None Include="Assets\Extern\Lobby\Instruction.txt" />
      <None Include="Assets\Extern\Fonts\OpenSans\License!.txt" />
