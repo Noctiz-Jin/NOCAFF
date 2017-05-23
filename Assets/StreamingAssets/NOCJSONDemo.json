@@ -1,0 +1,18 @@
+{
+	"XBar" : 1,
+	"XBars": [0, 0, 1, 1],
+	"YBar" : 1,
+	"YBars": [0, 0, 1, 2],
+	"ZBar" : 1,
+	"ZBars": [0, 0, 1, 3],
+
+	"XPlane" : 1,
+	"XPlanes": [3, 1, 2, 1, 2],
+	"YPlane" : 1,
+	"YPlanes": [3, 1, 2, 1, 2],
+	"ZPlane" : 1,
+	"ZPlanes": [3, 1, 2, 1, 2],
+
+	"Rect" : 1,
+	"Rects": [5, 6, 5, 6, 5, 6]
+}
