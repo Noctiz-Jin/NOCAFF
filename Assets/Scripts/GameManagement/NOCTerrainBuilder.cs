@@ -123,6 +123,7 @@ public class NOCTerrainBuilder : MonoBehaviour {
 		}
 	}
 
+	// Unit Tests //
 	private void TestGeometryDemoBuild ()
 	{
 		NOCGeometryTest geo = ReadGeometryFromFile("NOCJSONDemo");
