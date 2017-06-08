@@ -60,16 +60,14 @@
      <Compile Include="Assets\Extern\Lobby\Scripts\Lobby\LobbyTopPanel.cs" />
      <Compile Include="Assets\Scripts\GameManagement\NOCGameManager.cs" />
      <Compile Include="Assets\Scripts\GameManagement\NOCLoader.cs" />
-     <Compile Include="Assets\Scripts\GameManagement\NOCTerrainBuilder.cs" />
      <Compile Include="Assets\Scripts\GameManagement\NOCWorldManager.cs" />
      <Compile Include="Assets\Scripts\NOCFileManager.cs" />
      <Compile Include="Assets\Scripts\NOCUtility.cs" />
+     <Compile Include="Assets\Scripts\TerrainBuilders\NOCTerrainBuilder.cs" />
+     <Compile Include="Assets\Scripts\TerrainBuilders\NocTerrainDummyPlain.cs" />
      <None Include="Assets\Extern\Lobby\Documentation.txt" />
      <None Include="Assets\Extern\Lobby\Instruction.txt" />
      <None Include="Assets\Extern\Fonts\OpenSans\License!.txt" />
- <Reference Include="UnityEngine.Purchasing">
- <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/UnityPurchasing/UnityEngine.Purchasing.dll</HintPath>
- </Reference>
  <Reference Include="UnityEngine.Analytics">
  <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/UnityAnalytics/UnityEngine.Analytics.dll</HintPath>
  </Reference>
@@ -81,9 +79,6 @@
  </Reference>
  <Reference Include="UnityEngine.UI">
  <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
- </Reference>
- <Reference Include="UnityEngine.Advertisements">
- <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/Advertisements/UnityEngine.Advertisements.dll</HintPath>
  </Reference>
  <Reference Include="UnityEngine.HoloLens">
  <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/UnityHoloLens/RuntimeEditor/UnityEngine.HoloLens.dll</HintPath>

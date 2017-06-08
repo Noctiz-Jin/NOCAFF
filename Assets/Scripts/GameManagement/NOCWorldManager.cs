@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class NOCWorldManager : MonoBehaviour {
 
-	private NOCTerrainBuilder terrainBuilder;
+	private NocTerrainDummyPlain terrainBuilder;
 
 	public void BluePrint() {
-		terrainBuilder = GetComponent<NOCTerrainBuilder> ();
+		terrainBuilder = GetComponent<NocTerrainDummyPlain> ();
 	}
 
 	public void SetupScene() {
