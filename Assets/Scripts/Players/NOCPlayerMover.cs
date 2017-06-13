@@ -23,10 +23,12 @@ public class NOCPlayerMover : MonoBehaviour {
 
 	private CharacterController characterController;
 	private NOCPlayerCameraManager playerCameraManager;
+	private NOCPlayerAnimator playerAnimator;
 	// Use this for initialization
 	void Start () {
 		characterController = GetComponent<CharacterController> ();
 		playerCameraManager = GetComponent<NOCPlayerCameraManager> ();
+		playerAnimator = GetComponent<NOCPlayerAnimator>();
 	}
 
 	public void GetMoveInputAndMove()
@@ -40,6 +42,9 @@ public class NOCPlayerMover : MonoBehaviour {
 		}
 
 		MovePlayer(inputDir, running);
+
+		float speedPercent = ((running) ? currentSpeed / runSpeed : currentSpeed / walkSpeed * .5f);
+		playerAnimator.PlayerMoverAnimation(speedPercent, speedSmoothTime, walkSpeed/defaultWalkSpeed);
 	}
 
 	private void MovePlayer(Vector2 inputDir, bool running)
