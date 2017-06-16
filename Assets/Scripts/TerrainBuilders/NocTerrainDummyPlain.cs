@@ -6,6 +6,7 @@ public class NocTerrainDummyPlain : NOCTerrainBuilder {
 
 	// blocks
 	public GameObject protoBlock;
+	public GameObject woodBlock;
 	public GameObject invisibleBlock;
 
 
@@ -13,13 +14,14 @@ public class NocTerrainDummyPlain : NOCTerrainBuilder {
 		base.SetupScene();
 
 		SetupGround();
+		SetupObstacle();
 	}
 
 	protected override void SetupGround() {
 		base.SetupGround();
 
 		// build ground
-		CreateYPlane(0, nx, px, nz, pz, protoBlock, "Random", "None");
+		CreateYPlane(0, nx, px, nz, pz, protoBlock, "Random", "Random");
 
 		// build wall invisible
 		CreateXPlane(nx - 1, 1, 3, nz, pz, invisibleBlock);
@@ -30,6 +32,8 @@ public class NocTerrainDummyPlain : NOCTerrainBuilder {
 
 	protected override void SetupObstacle() {
 		base.SetupObstacle();
+
+		CreateYBar(5, 5, 1, 4, woodBlock, "AFace", "Random");
 	}
 
 	/*
