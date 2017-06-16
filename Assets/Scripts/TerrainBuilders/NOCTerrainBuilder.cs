@@ -52,16 +52,28 @@ public class NOCTerrainBuilder : MonoBehaviour {
 	}
 
 	////// Helper Methods --- Geometry Construction //////
-	private void CreateStaticBlock(int x, int y, int z, GameObject material, GameObject parent){
-		CreateBlock (x, y, z, material, parent, true, "Static");
+	private void CreateStaticBlock(int x, int y, int z, GameObject material, string blockFace, string blockYSpin, GameObject parent){
+		CreateBlock (x, y, z, material, blockFace, blockYSpin, parent, true, "Static");
 	}
 
-	private void CreateObstacleBlock(int x, int y, int z, GameObject material, GameObject parent){
-		CreateBlock (x, y, z, material, parent, false, "Obstacle");
+	private void CreateObstacleBlock(int x, int y, int z, GameObject material, string blockFace, string blockYSpin, GameObject parent){
+		CreateBlock (x, y, z, material, blockFace, blockYSpin, parent, false, "Obstacle");
 	}
 
-	private void CreateBlock(int x, int y, int z, GameObject material, GameObject parent, bool isStatic, string tag) {
-		GameObject block = Instantiate (material, new Vector3 (x, y, z), Quaternion.identity);
+	private void CreateBlock(int x, int y, int z, GameObject material, string blockFace, string blockYSpin, GameObject parent, bool isStatic, string tag) {
+		Quaternion blockQuaternion = Quaternion.identity;
+
+		if (blockFace != null)
+		{
+			blockQuaternion = Quaternion.Euler(blockQuaternion.eulerAngles + NOCUtility.BlockFaceSelect[blockFace]);
+		}
+
+		if (blockYSpin != null)
+		{
+			blockQuaternion = Quaternion.Euler(blockQuaternion.eulerAngles + NOCUtility.BlockYSpin[blockYSpin]);
+		}
+
+		GameObject block = Instantiate (material, new Vector3 (x, y, z), blockQuaternion);
 		block.isStatic = isStatic;
 		block.tag = tag;
 
@@ -75,45 +87,45 @@ public class NOCTerrainBuilder : MonoBehaviour {
 		}
 	}
 
-	protected void CreateXBar (int y, int z, int nx, int px, GameObject block)
+	protected void CreateXBar (int y, int z, int nx, int px, GameObject block, string blockFace = null, string blockYSpin = null)
 	{
-		CreateRect(nx, px, y, y, z, z, block);
+		CreateRect(nx, px, y, y, z, z, block, blockFace, blockYSpin);
 	}
 
-	protected void CreateYBar (int x, int z, int ny, int py, GameObject block)
+	protected void CreateYBar (int x, int z, int ny, int py, GameObject block, string blockFace = null, string blockYSpin = null)
 	{
-		CreateRect(x, x, ny, py, z, z, block);
+		CreateRect(x, x, ny, py, z, z, block, blockFace, blockYSpin);
 	}
 
-	protected void CreateZBar (int x, int y, int nz, int pz, GameObject block)
+	protected void CreateZBar (int x, int y, int nz, int pz, GameObject block, string blockFace = null, string blockYSpin = null)
 	{
-		CreateRect(x, x, y, y, nz, pz, block);
+		CreateRect(x, x, y, y, nz, pz, block, blockFace, blockYSpin);
 	}
 
-	protected void CreateXPlane (int x, int ny, int py, int nz, int pz, GameObject block)
+	protected void CreateXPlane (int x, int ny, int py, int nz, int pz, GameObject block, string blockFace = null, string blockYSpin = null)
 	{
-		CreateRect(x, x, ny, py, nz, pz, block);
+		CreateRect(x, x, ny, py, nz, pz, block, blockFace, blockYSpin);
 	}
 
-	protected void CreateYPlane (int y, int nx, int px, int nz, int pz, GameObject block)
+	protected void CreateYPlane (int y, int nx, int px, int nz, int pz, GameObject block, string blockFace = null, string blockYSpin = null)
 	{
-		CreateRect(nx, px, y, y, nz, pz, block);
+		CreateRect(nx, px, y, y, nz, pz, block, blockFace, blockYSpin);
 	}
 
-	protected void CreateZPlane (int z, int nx, int px, int ny, int py, GameObject block)
+	protected void CreateZPlane (int z, int nx, int px, int ny, int py, GameObject block, string blockFace = null, string blockYSpin = null)
 	{
-		CreateRect(nx, px, ny, py, z, z, block);
+		CreateRect(nx, px, ny, py, z, z, block, blockFace, blockYSpin);
 	}
 
-	protected void CreateRect (int nx, int px, int ny, int py, int nz, int pz, GameObject block)
+	protected void CreateRect (int nx, int px, int ny, int py, int nz, int pz, GameObject block, string blockFace = null, string blockYSpin = null)
 	{
 		for (int x = nx; x < px + 1; x++) {
 			for (int y = ny; y < py + 1; y++) {
 				for (int z = nz; z < pz + 1; z++) {
 					if (terrainLayer == NOCTerrainLayer.NOCGroundLayer) {
-						CreateStaticBlock (x, y, z, block, groundLevel);
+						CreateStaticBlock (x, y, z, block, blockFace, blockYSpin, groundLevel);
 					} else if (terrainLayer == NOCTerrainLayer.NOCObstacleLayer) {
-						CreateObstacleBlock (x, y, z, block, obstacleLevel);
+						CreateObstacleBlock (x, y, z, block, blockFace, blockYSpin, obstacleLevel);
 					} else {
 						Debug.Log("*** Unknown NOCTerrainLayer Enum ***");
 					}

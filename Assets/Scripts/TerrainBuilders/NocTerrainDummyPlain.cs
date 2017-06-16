@@ -19,7 +19,7 @@ public class NocTerrainDummyPlain : NOCTerrainBuilder {
 		base.SetupGround();
 
 		// build ground
-		CreateYPlane(0, nx, px, nz, pz, protoBlock);
+		CreateYPlane(0, nx, px, nz, pz, protoBlock, "FFace", "Reverse");
 
 		// build wall invisible
 		CreateXPlane(nx - 1, 1, 3, nz, pz, invisibleBlock);
