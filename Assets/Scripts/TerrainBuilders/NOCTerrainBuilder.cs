@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using System.IO;
 
@@ -65,12 +66,22 @@ public class NOCTerrainBuilder : MonoBehaviour {
 
 		if (blockFace != null)
 		{
-			blockQuaternion = Quaternion.Euler(blockQuaternion.eulerAngles + NOCUtility.BlockFaceSelect[blockFace]);
+			if (blockFace == "Random")
+			{
+				blockQuaternion = Quaternion.Euler(blockQuaternion.eulerAngles + BlockFaceSelect[BlockFaceSelect.Keys.ToArray()[Random.Range(0, 6)]]);
+			} else {
+				blockQuaternion = Quaternion.Euler(blockQuaternion.eulerAngles + BlockFaceSelect[blockFace]);
+			}
 		}
 
 		if (blockYSpin != null)
 		{
-			blockQuaternion = Quaternion.Euler(blockQuaternion.eulerAngles + NOCUtility.BlockYSpin[blockYSpin]);
+			if (blockYSpin == "Random")
+			{
+				blockQuaternion = Quaternion.Euler(blockQuaternion.eulerAngles + BlockYSpin[BlockYSpin.Keys.ToArray()[Random.Range(0, 4)]]);
+			} else {
+				blockQuaternion = Quaternion.Euler(blockQuaternion.eulerAngles + BlockYSpin[blockYSpin]);
+			}
 		}
 
 		GameObject block = Instantiate (material, new Vector3 (x, y, z), blockQuaternion);
@@ -87,37 +98,37 @@ public class NOCTerrainBuilder : MonoBehaviour {
 		}
 	}
 
-	protected void CreateXBar (int y, int z, int nx, int px, GameObject block, string blockFace = null, string blockYSpin = null)
+	protected void CreateXBar (int y, int z, int nx, int px, GameObject block, string blockFace = "AFace", string blockYSpin = "None")
 	{
 		CreateRect(nx, px, y, y, z, z, block, blockFace, blockYSpin);
 	}
 
-	protected void CreateYBar (int x, int z, int ny, int py, GameObject block, string blockFace = null, string blockYSpin = null)
+	protected void CreateYBar (int x, int z, int ny, int py, GameObject block, string blockFace = "AFace", string blockYSpin = "None")
 	{
 		CreateRect(x, x, ny, py, z, z, block, blockFace, blockYSpin);
 	}
 
-	protected void CreateZBar (int x, int y, int nz, int pz, GameObject block, string blockFace = null, string blockYSpin = null)
+	protected void CreateZBar (int x, int y, int nz, int pz, GameObject block, string blockFace = "AFace", string blockYSpin = "None")
 	{
 		CreateRect(x, x, y, y, nz, pz, block, blockFace, blockYSpin);
 	}
 
-	protected void CreateXPlane (int x, int ny, int py, int nz, int pz, GameObject block, string blockFace = null, string blockYSpin = null)
+	protected void CreateXPlane (int x, int ny, int py, int nz, int pz, GameObject block, string blockFace = "AFace", string blockYSpin = "None")
 	{
 		CreateRect(x, x, ny, py, nz, pz, block, blockFace, blockYSpin);
 	}
 
-	protected void CreateYPlane (int y, int nx, int px, int nz, int pz, GameObject block, string blockFace = null, string blockYSpin = null)
+	protected void CreateYPlane (int y, int nx, int px, int nz, int pz, GameObject block, string blockFace = "AFace", string blockYSpin = "None")
 	{
 		CreateRect(nx, px, y, y, nz, pz, block, blockFace, blockYSpin);
 	}
 
-	protected void CreateZPlane (int z, int nx, int px, int ny, int py, GameObject block, string blockFace = null, string blockYSpin = null)
+	protected void CreateZPlane (int z, int nx, int px, int ny, int py, GameObject block, string blockFace = "AFace", string blockYSpin = "None")
 	{
 		CreateRect(nx, px, ny, py, z, z, block, blockFace, blockYSpin);
 	}
 
-	protected void CreateRect (int nx, int px, int ny, int py, int nz, int pz, GameObject block, string blockFace = null, string blockYSpin = null)
+	protected void CreateRect (int nx, int px, int ny, int py, int nz, int pz, GameObject block, string blockFace = "AFace", string blockYSpin = "None")
 	{
 		for (int x = nx; x < px + 1; x++) {
 			for (int y = ny; y < py + 1; y++) {
@@ -133,4 +144,24 @@ public class NOCTerrainBuilder : MonoBehaviour {
 			}
 		}
 	}
+
+	public static Dictionary<string, Vector3> BlockFaceSelect = new Dictionary<string, Vector3>
+    {
+        {"AFace", new Vector3(0, 180, 0)},
+        {"BFace", new Vector3(0, 90, 90)},
+        {"CFace", new Vector3(-90, 180, 0)},
+        {"DFace", new Vector3(0, -90, -90)},
+        {"EFace", new Vector3(90, 0, 0)},
+        {"FFace", new Vector3(0, 0, 180)}
+    };
+
+
+    public static Dictionary<string, Vector3> BlockYSpin = new Dictionary<string, Vector3>
+    {
+    	// None Spin block will head its up face letter to Z+ axis
+    	{"None", new Vector3(0, 0, 0)},
+        {"Left", new Vector3(0, -90, 0)},
+        {"Right", new Vector3(0, 90, 0)},
+        {"Reverse", new Vector3(0, 180, 0)}
+    };
 }
