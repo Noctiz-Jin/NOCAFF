@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class NOCWorldManager : MonoBehaviour {
 
+	public bool SetScriptedWorld = false;
 	private NocTerrainDummyPlain terrainBuilder;
 
 	public void BluePrint() {
@@ -11,7 +12,10 @@ public class NOCWorldManager : MonoBehaviour {
 	}
 
 	public void SetupScene() {
-		terrainBuilder.SetupScene ();
+		if (SetScriptedWorld == true)
+		{
+			terrainBuilder.SetupScene ();
+		}
 	}
 
 }

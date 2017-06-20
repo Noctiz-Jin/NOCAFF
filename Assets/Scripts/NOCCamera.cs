@@ -6,7 +6,8 @@ public class NOCCamera : MonoBehaviour {
 
 	public bool lockCursor;
 	public float mouseSensitivity = 10;
-	public float dstFromTarget = 4;
+	public float dstFromTargetOverShoulder = 4;
+	public Vector3 dstFromTargetPan = new Vector3 (0, 0, 0);
 	public Vector2 pitchMinMax = new Vector2 (0, 85);
 	public float rotationSmoothTime = .12f;
 
@@ -30,7 +31,8 @@ public class NOCCamera : MonoBehaviour {
 			SwitchCursorLock(!lockCursor);
 		}
 
-		GetInputAndFollowPlayer();
+		//GetInputAndFollowPlayerPan();
+		GetInputAndFollowPlayerOverShoulder();
 	}
 
 	public bool SwitchPlayer () {
@@ -64,7 +66,7 @@ public class NOCCamera : MonoBehaviour {
 		return false;
 	}
 
-	private void GetInputAndFollowPlayer()
+	private void GetInputAndFollowPlayerOverShoulder()
 	{
 		if (!lockCursor) return;
 
@@ -74,6 +76,12 @@ public class NOCCamera : MonoBehaviour {
 		currentRotation = Vector3.SmoothDamp (currentRotation, new Vector3 (pitch, yaw), ref rotationSmoothVelocity, rotationSmoothTime);
 
 		transform.eulerAngles = currentRotation;
-		transform.position = target.position - transform.forward * dstFromTarget;
+		transform.position = target.position - transform.forward * dstFromTargetOverShoulder;
+	}
+
+	private void GetInputAndFollowPlayerPan()
+	{
+		transform.position = target.position + dstFromTargetPan;
+		transform.rotation = Quaternion.Euler(50, -90, 0);
 	}
 }

@@ -70,9 +70,13 @@
      <Compile Include="Assets\Scripts\Players\NOCPlayerMover.cs" />
      <Compile Include="Assets\Scripts\TerrainBuilders\NOCTerrainBuilder.cs" />
      <Compile Include="Assets\Scripts\TerrainBuilders\NocTerrainDummyPlain.cs" />
+     <None Include="Assets\Standard Assets\Effects\ToonShading\Shaders\ToonBasic.shader" />
      <None Include="Assets\Extern\Lobby\Documentation.txt" />
      <None Include="Assets\Extern\Lobby\Instruction.txt" />
+     <None Include="Assets\Standard Assets\Effects\ToonShading\Shaders\ToonBasicOutline.shader" />
      <None Include="Assets\Extern\Fonts\OpenSans\License!.txt" />
+     <None Include="Assets\Standard Assets\Effects\ToonShading\Shaders\ToonLitOutline.shader" />
+     <None Include="Assets\Standard Assets\Effects\ToonShading\Shaders\ToonLit.shader" />
  <Reference Include="UnityEngine.Purchasing">
  <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/UnityPurchasing/UnityEngine.Purchasing.dll</HintPath>
  </Reference>
