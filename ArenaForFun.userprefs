@@ -1,7 +1,8 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Players/NOCPlayerController.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Standard Assets/Effects/ToonShading/Shaders/ToonBasic.shader">
     <Files>
+      <File FileName="Assets/Standard Assets/Effects/ToonShading/Shaders/ToonBasic.shader" Line="1" Column="1" />
       <File FileName="Assets/Scripts/Players/NOCPlayerController.cs" Line="12" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
