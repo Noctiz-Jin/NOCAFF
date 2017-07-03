@@ -51,7 +51,7 @@ ModelImporter:
     400042: Human
     4300000: Cube
     4300002: Human
-    7400000: Default Take
+    7400000: HandHoldingWave
     7400002: Idle
     7400004: Run
     7400006: T-Pose
@@ -70,19 +70,25 @@ ModelImporter:
     optimizeGameObjects: 0
     motionNodeName: <Root Transform>
     animationImportErrors: 
-    animationImportWarnings: "\nClip 'Run' has import animation warnings that might
-      lower retargeting quality:\nNote: Activate translation DOF on avatar to improve
-      retargeting quality.\n\t'Upper_Leg_L' has scale animation that will be discarded.\n\t'Lower_Leg_L'
-      has scale animation that will be discarded.\n\t'Foot_L' has scale animation
-      that will be discarded.\n\t'Upper_Leg_R' has scale animation that will be discarded.\n\t'Lower_Leg_R'
-      has scale animation that will be discarded.\n\t'Foot_R' has scale animation
-      that will be discarded.\n\nClip 'Walk' has import animation warnings that might
-      lower retargeting quality:\nNote: Activate translation DOF on avatar to improve
-      retargeting quality.\n\t'Upper_Leg_L' has scale animation that will be discarded.\n\t'Lower_Leg_L'
-      has scale animation that will be discarded.\n\t'Foot_L' has scale animation
-      that will be discarded.\n\t'Upper_Leg_R' has scale animation that will be discarded.\n\t'Lower_Leg_R'
-      has scale animation that will be discarded.\n\t'Foot_R' has scale animation
-      that will be discarded.\n"
+    animationImportWarnings: "\nClip 'Default Take' has import animation warnings
+      that might lower retargeting quality:\nNote: Activate translation DOF on avatar
+      to improve retargeting quality.\n\t'Upper_Leg_L' has scale animation that will
+      be discarded.\n\t'Lower_Leg_L' has scale animation that will be discarded.\n\t'Foot_L'
+      has scale animation that will be discarded.\n\t'Upper_Leg_R' has scale animation
+      that will be discarded.\n\t'Lower_Leg_R' has scale animation that will be discarded.\n\t'Foot_R'
+      has scale animation that will be discarded.\n\nClip 'Run' has import animation
+      warnings that might lower retargeting quality:\nNote: Activate translation DOF
+      on avatar to improve retargeting quality.\n\t'Upper_Leg_L' has scale animation
+      that will be discarded.\n\t'Lower_Leg_L' has scale animation that will be discarded.\n\t'Foot_L'
+      has scale animation that will be discarded.\n\t'Upper_Leg_R' has scale animation
+      that will be discarded.\n\t'Lower_Leg_R' has scale animation that will be discarded.\n\t'Foot_R'
+      has scale animation that will be discarded.\n\nClip 'Walk' has import animation
+      warnings that might lower retargeting quality:\nNote: Activate translation DOF
+      on avatar to improve retargeting quality.\n\t'Upper_Leg_L' has scale animation
+      that will be discarded.\n\t'Lower_Leg_L' has scale animation that will be discarded.\n\t'Foot_L'
+      has scale animation that will be discarded.\n\t'Upper_Leg_R' has scale animation
+      that will be discarded.\n\t'Lower_Leg_R' has scale animation that will be discarded.\n\t'Foot_R'
+      has scale animation that will be discarded.\n"
     animationRetargetingWarnings: 
     animationDoRetargetingWarnings: 0
     animationCompression: 3
@@ -95,7 +101,7 @@ ModelImporter:
     - serializedVersion: 16
       name: Idle
       takeName: Idle
-      firstFrame: 0
+      firstFrame: 1
       lastFrame: 99
       wrapMode: 0
       orientationOffsetY: 0
@@ -165,7 +171,7 @@ ModelImporter:
     - serializedVersion: 16
       name: Run
       takeName: Run
-      firstFrame: 0
+      firstFrame: 1
       lastFrame: 12
       wrapMode: 0
       orientationOffsetY: 0
@@ -305,8 +311,78 @@ ModelImporter:
     - serializedVersion: 16
       name: Walk
       takeName: Walk
-      firstFrame: 0
+      firstFrame: 1
       lastFrame: 24
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Armature
+        weight: 1
+      - path: Armature/Root
+        weight: 1
+      - path: Armature/Root/Hip
+        weight: 1
+      - path: Armature/Root/Hip/Spine
+        weight: 1
+      - path: Armature/Root/Hip/Spine/Head
+        weight: 1
+      - path: Armature/Root/Hip/Spine/Upper_Arm_L
+        weight: 1
+      - path: Armature/Root/Hip/Spine/Upper_Arm_L/Lower_Arm_L
+        weight: 1
+      - path: Armature/Root/Hip/Spine/Upper_Arm_L/Lower_Arm_L/Hand_L
+        weight: 1
+      - path: Armature/Root/Hip/Spine/Upper_Arm_R
+        weight: 1
+      - path: Armature/Root/Hip/Spine/Upper_Arm_R/Lower_Arm_R
+        weight: 1
+      - path: Armature/Root/Hip/Spine/Upper_Arm_R/Lower_Arm_R/Hand_R
+        weight: 1
+      - path: Armature/Root/Hip/Upper_Leg_L
+        weight: 1
+      - path: Armature/Root/Hip/Upper_Leg_L/Lower_Leg_L
+        weight: 1
+      - path: Armature/Root/Hip/Upper_Leg_L/Lower_Leg_L/Foot_L
+        weight: 1
+      - path: Armature/Root/Hip/Upper_Leg_L/Lower_Leg_L/Foot_L/Toes_L
+        weight: 1
+      - path: Armature/Root/Hip/Upper_Leg_R
+        weight: 1
+      - path: Armature/Root/Hip/Upper_Leg_R/Lower_Leg_R
+        weight: 1
+      - path: Armature/Root/Hip/Upper_Leg_R/Lower_Leg_R/Foot_R
+        weight: 1
+      - path: Armature/Root/Hip/Upper_Leg_R/Lower_Leg_R/Foot_R/Toes_R
+        weight: 1
+      - path: Human
+        weight: 0
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: HandHoldingWave
+      takeName: HandHoldingWave
+      firstFrame: 1
+      lastFrame: 18
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
