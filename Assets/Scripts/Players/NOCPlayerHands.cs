@@ -34,13 +34,11 @@ public class NOCPlayerHands : MonoBehaviour {
 
 			if (Input.GetButtonDown("Fire2"))
 			{
-				Debug.Log("HIT2");
 				playerAnimator.PlayerHorizontalRightSlash();
 			}
 
 			if (Input.GetButtonDown("Fire1"))
 			{
-				Debug.Log("HIT1");
 				playerAnimator.PlayerHorizontalLeftSlash();
 			}
 		}

@@ -13,7 +13,7 @@ public class NOCPlayerAnimator : MonoBehaviour {
 	static int rightHandHoldingState = Animator.StringToHash("RightHandMoving Layer.HandHoldingWave");
 
 
-	// Constants
+	// Constants //
 	static float HandsWavingThreshold = 0.6f;
 	static float HandsWavingWeight = 0.6f;
 
