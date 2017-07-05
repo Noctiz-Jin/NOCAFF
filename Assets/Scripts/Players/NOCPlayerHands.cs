@@ -18,26 +18,42 @@ public class NOCPlayerHands : MonoBehaviour {
 	
 	public void GetHandsInputAndAct()
 	{
-		if (Input.GetButtonDown("LeftHandAct"))
+		if (playerAnimator.PlayerCanMove())
 		{
-			playerAnimator.PlayerHandHold(true);
-			GrabWithLeftHand(true);
-		}
+			if (Input.GetButtonDown("LeftHandAct"))
+			{
+				playerAnimator.PlayerHandHold(true);
+				GrabWithLeftHand(true);
+			}
 
-		if (Input.GetButtonDown("RightHandAct"))
-		{
-			playerAnimator.PlayerHandHold(false);
-			GrabWithLeftHand(false);
+			if (Input.GetButtonDown("RightHandAct"))
+			{
+				playerAnimator.PlayerHandHold(false);
+				GrabWithLeftHand(false);
+			}
+
+			if (Input.GetButtonDown("Fire2"))
+			{
+				Debug.Log("HIT2");
+				playerAnimator.PlayerHorizontalRightSlash();
+			}
+
+			if (Input.GetButtonDown("Fire1"))
+			{
+				Debug.Log("HIT1");
+				playerAnimator.PlayerHorizontalLeftSlash();
+			}
 		}
 	}
 
 	private void GrabWithLeftHand(bool isLeft)
 	{
-		GameObject sword = GameObject.Find("NOCSwordHandle");
 		if (isLeft)
 		{
+			GameObject sword = GameObject.Find("NOCSwordHandle");
 			sword.GetComponent<NOCHandle>().GrabHandle(leftHandHold, leftHandHold);
 		} else {
+			GameObject sword = GameObject.Find("NOCSwordHandle2");
 			sword.GetComponent<NOCHandle>().GrabHandle(rightHandHold, rightHandHold);
 		}
 	}

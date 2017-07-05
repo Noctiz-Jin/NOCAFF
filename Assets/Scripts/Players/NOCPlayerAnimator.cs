@@ -5,8 +5,10 @@ using UnityEngine;
 public class NOCPlayerAnimator : MonoBehaviour {
 
 	private Animator animator;
+	AnimatorStateInfo currentBaseState;
 	AnimatorStateInfo currentLeftHandState;
 	AnimatorStateInfo currentRightHandState;
+	static int movingState = Animator.StringToHash("Base Layer.MoveBlendTree");
 	static int leftHandHoldingState = Animator.StringToHash("LeftHandMoving Layer.HandHoldingWave");
 	static int rightHandHoldingState = Animator.StringToHash("RightHandMoving Layer.HandHoldingWave");
 
@@ -17,6 +19,18 @@ public class NOCPlayerAnimator : MonoBehaviour {
 
 	void Start () {
 		animator = GetComponent<Animator> ();
+	}
+
+	public bool PlayerCanMove()
+	{
+		currentBaseState = animator.GetCurrentAnimatorStateInfo(0);
+		if (currentBaseState.fullPathHash == movingState)
+		{
+			return true;
+		} else {
+			SetHandsMovingWeight(0);
+			return false;
+		}
 	}
 	
 	public void PlayerMoverAnimation(float speedPercent, float speedSmoothTime, float animationSpeed)
@@ -52,6 +66,16 @@ public class NOCPlayerAnimator : MonoBehaviour {
 				animator.SetBool("isRightHandHold", true);
 			}
 		}
+	}
+
+	public void PlayerHorizontalRightSlash()
+	{
+		animator.SetTrigger("HorizontalRightSlash");
+	}
+
+	public void PlayerHorizontalLeftSlash()
+	{
+		animator.SetTrigger("HorizontalLeftSlash");
 	}
 
 	private void SetHandsMovingWeight(float weight)

@@ -6,7 +6,7 @@ public class NOCCamera : MonoBehaviour {
 
 	public bool lockCursor;
 	public float mouseSensitivity = 10;
-	public float dstFromTargetOverShoulder = 4;
+	public float dstFromTargetOverShoulder = 7;
 	public Vector3 dstFromTargetPan = new Vector3 (0, 0, 0);
 	public Vector2 pitchMinMax = new Vector2 (0, 85);
 	public float rotationSmoothTime = .12f;
