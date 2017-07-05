@@ -58,8 +58,8 @@
      <Compile Include="Assets\Extern\Lobby\Scripts\Lobby\LobbyServerEntry.cs" />
      <Compile Include="Assets\Extern\Lobby\Scripts\Lobby\LobbyServerList.cs" />
      <Compile Include="Assets\Extern\Lobby\Scripts\Lobby\LobbyTopPanel.cs" />
-     <Compile Include="Assets\Scripts\Creatures\NOCCreatureAnimator.cs" />
-     <Compile Include="Assets\Scripts\Creatures\NOCCreatureController.cs" />
+     <Compile Include="Assets\Scripts\Creatures\NOCHumanCreatureAnimator.cs" />
+     <Compile Include="Assets\Scripts\Creatures\NOCHumanCreatureController.cs" />
      <Compile Include="Assets\Scripts\GameManagement\NOCGameManager.cs" />
      <Compile Include="Assets\Scripts\GameManagement\NOCLoader.cs" />
      <Compile Include="Assets\Scripts\GameManagement\NOCWorldManager.cs" />

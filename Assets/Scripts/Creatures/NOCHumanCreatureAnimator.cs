@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class NOCCreatureAnimator : MonoBehaviour {
+public class NOCHumanCreatureAnimator : MonoBehaviour {
 
 	private Animator animator;
 
@@ -15,5 +15,10 @@ public class NOCCreatureAnimator : MonoBehaviour {
 		animator.SetFloat ("SpeedPercent", speedPercent, speedSmoothTime, Time.deltaTime);
 		animator.SetFloat ("AnimationSpeed", animationSpeed);
 
+	}
+
+	public void CreatureStaticAnimation(string animation)
+	{
+		animator.SetTrigger(animation);
 	}
 }
