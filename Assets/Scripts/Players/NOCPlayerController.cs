@@ -17,6 +17,7 @@ public class NOCPlayerController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+		playerMover.GetRollInputAndDodge();
 		if (playerAnimator.PlayerCanMove())
 		{
 			playerMover.GetMoveInputAndMove();

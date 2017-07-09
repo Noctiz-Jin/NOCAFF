@@ -7,6 +7,7 @@ public class NOCPlayerMover : MonoBehaviour {
 	////// Movement Assets //////
 	public float walkSpeed = 2;
 	public float runSpeed = 6;
+	public float rollSpeed = 9;
 	const float defaultWalkSpeed = 2;
 	const float defaultRunSpeed = 8;
 	public float gravity = -12;
@@ -19,6 +20,7 @@ public class NOCPlayerMover : MonoBehaviour {
 	float speedSmoothVelocity;
 	float currentSpeed;
 	float velocityY;
+	Vector2 rollDir = Vector2.zero;
 
 
 	private CharacterController characterController;
@@ -29,6 +31,21 @@ public class NOCPlayerMover : MonoBehaviour {
 		characterController = GetComponent<CharacterController> ();
 		playerCameraManager = GetComponent<NOCPlayerCameraManager> ();
 		playerAnimator = GetComponent<NOCPlayerAnimator>();
+	}
+
+	public void GetRollInputAndDodge()
+	{
+		if (Input.GetButtonDown("Jump"))
+		{
+			playerAnimator.PlayerRollDodge();
+			Vector2 input = new Vector2 (Input.GetAxisRaw ("Horizontal"), Input.GetAxisRaw ("Vertical"));
+			rollDir = input.normalized;
+		}
+
+		if (playerAnimator.PlayerDodging())
+		{
+			RollPlayer(rollDir);
+		}
 	}
 
 	public void GetMoveInputAndMove()
@@ -45,6 +62,27 @@ public class NOCPlayerMover : MonoBehaviour {
 
 		float speedPercent = ((running) ? currentSpeed / runSpeed : currentSpeed / walkSpeed * .5f);
 		playerAnimator.PlayerMoverAnimation(speedPercent, speedSmoothTime, walkSpeed/defaultWalkSpeed);
+	}
+
+	private void RollPlayer(Vector2 inputDir)
+	{
+		if (inputDir != Vector2.zero) {
+			float targetRotation = Mathf.Atan2 (inputDir.x, inputDir.y) * Mathf.Rad2Deg + playerCameraManager.GetPlayerCameraEulerY();
+			transform.eulerAngles = Vector3.up * Mathf.SmoothDampAngle(transform.eulerAngles.y, targetRotation, ref turnSmoothVelocity, GetModifiedSmoothTime(turnSmoothTime));
+		}
+
+		float targetSpeed = rollSpeed;// * inputDir.magnitude;
+		currentSpeed = Mathf.SmoothDamp (currentSpeed, targetSpeed, ref speedSmoothVelocity, GetModifiedSmoothTime(speedSmoothTime));
+
+		velocityY += Time.deltaTime * gravity;
+		Vector3 velocity = transform.forward * currentSpeed + Vector3.up * velocityY;
+
+		characterController.Move (velocity * Time.deltaTime);
+		currentSpeed = new Vector2 (characterController.velocity.x, characterController.velocity.z).magnitude;
+
+		if (characterController.isGrounded) {
+			velocityY = 0;
+		}		
 	}
 
 	private void MovePlayer(Vector2 inputDir, bool running)
