@@ -5,6 +5,7 @@ using UnityEngine;
 public class NOCCamera : MonoBehaviour {
 
 	public bool lockCursor;
+	public bool isPan = false;
 	public float mouseSensitivity = 10;
 	public float dstFromTargetOverShoulder = 7;
 	public Vector3 dstFromTargetPan = new Vector3 (0, 0, 0);
@@ -31,8 +32,12 @@ public class NOCCamera : MonoBehaviour {
 			SwitchCursorLock(!lockCursor);
 		}
 
-		//GetInputAndFollowPlayerPan();
-		GetInputAndFollowPlayerOverShoulder();
+		if (isPan)
+		{
+			GetInputAndFollowPlayerPan();
+		} else {
+			GetInputAndFollowPlayerOverShoulder();
+		}
 	}
 
 	public bool SwitchPlayer () {
