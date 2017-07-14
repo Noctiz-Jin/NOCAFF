@@ -15,8 +15,8 @@ public class NOCCamera : MonoBehaviour {
 	float yaw;
 	float pitch;
 
-	private NOCPlayerController playerController;
-	private Transform target;
+	NOCPlayerController playerController;
+	Transform target;
 	Vector3 rotationSmoothVelocity;
 	Vector3 currentRotation;
 
@@ -47,14 +47,14 @@ public class NOCCamera : MonoBehaviour {
 		return false;
 	}
 
-	private void SwitchCursorLock (bool isLock)
+	void SwitchCursorLock (bool isLock)
 	{
 		lockCursor = isLock;
 		Cursor.lockState = isLock ? CursorLockMode.Locked : CursorLockMode.None;
 		Cursor.visible = !isLock;
 	}
 
-	private bool SearchForPlayer()
+	bool SearchForPlayer()
 	{
 		GameObject player = GameObject.FindWithTag("Player");
 		if (player != null)
@@ -66,7 +66,7 @@ public class NOCCamera : MonoBehaviour {
 		return false;
 	}
 
-	private void GetInputAndFollowPlayerOverShoulder()
+	void GetInputAndFollowPlayerOverShoulder()
 	{
 		if (!lockCursor) return;
 
@@ -79,7 +79,7 @@ public class NOCCamera : MonoBehaviour {
 		transform.position = target.position - transform.forward * dstFromTargetOverShoulder;
 	}
 
-	private void GetInputAndFollowPlayerPan()
+	void GetInputAndFollowPlayerPan()
 	{
 		transform.position = target.position + dstFromTargetPan;
 		transform.rotation = Quaternion.Euler(50, -90, 0);

@@ -5,7 +5,7 @@ using System.IO;
 
 public class NOCFileManager : MonoBehaviour {
 
-	private static string filePath = Application.streamingAssetsPath;
+	static string filePath = Application.streamingAssetsPath;
 
 	public static string ReadJSON (string fileName)
 	{

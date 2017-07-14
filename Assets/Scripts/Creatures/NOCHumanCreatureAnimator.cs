@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class NOCHumanCreatureAnimator : MonoBehaviour {
 
-	private Animator animator;
+	Animator animator;
 
 	void Start () {
 		animator = GetComponent<Animator> ();

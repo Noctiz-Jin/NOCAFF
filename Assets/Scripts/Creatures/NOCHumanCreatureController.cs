@@ -14,7 +14,7 @@ public class NOCHumanCreatureController : MonoBehaviour {
 	const float defaultRunSpeed = 8;
 	public float speedSmoothTime = 0.1f;
 
-	private NOCHumanCreatureAnimator creatureAnimator;
+	NOCHumanCreatureAnimator creatureAnimator;
 	NavMeshAgent agent;
 	// Use this for initialization
 	void Start () {
@@ -36,7 +36,7 @@ public class NOCHumanCreatureController : MonoBehaviour {
 		//Debug.Log(agent.velocity);
 	}
 
-	private void CreatureMover()
+	void CreatureMover()
 	{
 		float currentSpeed = agent.velocity.magnitude;
 		bool running = currentSpeed > 2;
@@ -44,7 +44,7 @@ public class NOCHumanCreatureController : MonoBehaviour {
 		creatureAnimator.CreatureMoverAnimation(speedPercent, speedSmoothTime, walkSpeed/defaultWalkSpeed);
 	}
 
-	private void CreatureHandsHold()
+	void CreatureHandsHold()
 	{
 		
 	}

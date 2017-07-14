@@ -7,7 +7,7 @@ public class NOCGameManager : MonoBehaviour {
 	// singleton self
 	public static NOCGameManager instance = null;
 	// WorldManager instance
-	private NOCWorldManager worldManager;
+	NOCWorldManager worldManager;
 
 	void Awake () {
 		if (instance == null)

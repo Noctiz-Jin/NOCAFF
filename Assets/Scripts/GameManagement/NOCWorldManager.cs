@@ -5,7 +5,7 @@ using UnityEngine;
 public class NOCWorldManager : MonoBehaviour {
 
 	public bool SetScriptedWorld = false;
-	private NocTerrainDummyPlain terrainBuilder;
+	NocTerrainDummyPlain terrainBuilder;
 
 	public void BluePrint() {
 		terrainBuilder = GetComponent<NocTerrainDummyPlain> ();

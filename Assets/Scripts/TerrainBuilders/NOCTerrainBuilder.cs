@@ -22,17 +22,17 @@ public class NOCTerrainBuilder : MonoBehaviour {
 	protected int pz;
 
 	//Parent to all GameObjects
-	private GameObject groundLevel;
-	private GameObject obstacleLevel;
+	GameObject groundLevel;
+	GameObject obstacleLevel;
 
 	//Layer Enum
-	private enum NOCTerrainLayer
+	enum NOCTerrainLayer
 	{
 		NOCGroundLayer = 0,
 		NOCObstacleLayer = 1
 	}
 
-	private NOCTerrainLayer terrainLayer;
+	NOCTerrainLayer terrainLayer;
 	// Subclass Guide: Call base.SetupScene() before building terrain
 	public virtual void SetupScene() {
 		nx = -lx;
@@ -53,15 +53,15 @@ public class NOCTerrainBuilder : MonoBehaviour {
 	}
 
 	////// Helper Methods --- Geometry Construction //////
-	private void CreateStaticBlock(int x, int y, int z, GameObject material, string blockFace, string blockYSpin, GameObject parent){
+	void CreateStaticBlock(int x, int y, int z, GameObject material, string blockFace, string blockYSpin, GameObject parent){
 		CreateBlock (x, y, z, material, blockFace, blockYSpin, parent, true, "Static");
 	}
 
-	private void CreateObstacleBlock(int x, int y, int z, GameObject material, string blockFace, string blockYSpin, GameObject parent){
+	void CreateObstacleBlock(int x, int y, int z, GameObject material, string blockFace, string blockYSpin, GameObject parent){
 		CreateBlock (x, y, z, material, blockFace, blockYSpin, parent, false, "Obstacle");
 	}
 
-	private void CreateBlock(int x, int y, int z, GameObject material, string blockFace, string blockYSpin, GameObject parent, bool isStatic, string tag) {
+	void CreateBlock(int x, int y, int z, GameObject material, string blockFace, string blockYSpin, GameObject parent, bool isStatic, string tag) {
 		Quaternion blockQuaternion = Quaternion.identity;
 
 		if (blockFace != null)

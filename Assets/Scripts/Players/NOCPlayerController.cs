@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class NOCPlayerController : MonoBehaviour {
 
-	private NOCPlayerMover playerMover;
-	private NOCPlayerHands playerHands;
-	private NOCPlayerAnimator playerAnimator;
+	NOCPlayerMover playerMover;
+	NOCPlayerHands playerHands;
+	NOCPlayerAnimator playerAnimator;
 
 	// Use this for initialization
 	void Start () {

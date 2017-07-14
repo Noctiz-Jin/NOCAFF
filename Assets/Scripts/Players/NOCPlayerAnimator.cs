@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class NOCPlayerAnimator : MonoBehaviour {
 
-	private Animator animator;
+	Animator animator;
 	AnimatorStateInfo currentBaseState;
 	AnimatorStateInfo currentLeftHandState;
 	AnimatorStateInfo currentRightHandState;
@@ -118,7 +118,7 @@ public class NOCPlayerAnimator : MonoBehaviour {
 		animator.SetTrigger("HorizontalLeftSlash");
 	}
 
-	private void SetHandsMovingWeight(float weight)
+	void SetHandsMovingWeight(float weight)
 	{
 		animator.SetLayerWeight(1, weight);
 		animator.SetLayerWeight(2, weight);
