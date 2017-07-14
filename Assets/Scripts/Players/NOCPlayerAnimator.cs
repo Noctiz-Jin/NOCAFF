@@ -10,6 +10,7 @@ public class NOCPlayerAnimator : MonoBehaviour {
 	AnimatorStateInfo currentRightHandState;
 	static int movingState = Animator.StringToHash("Base Layer.MoveBlendTree");
 	static int dodgingState = Animator.StringToHash("Base Layer.RollDodge");
+	static int leftInteractingState = Animator.StringToHash("Base Layer.LeftInteraction");
 	static int leftHandHoldingState = Animator.StringToHash("LeftHandMoving Layer.HandHoldingWave");
 	static int rightHandHoldingState = Animator.StringToHash("RightHandMoving Layer.HandHoldingWave");
 
@@ -30,6 +31,17 @@ public class NOCPlayerAnimator : MonoBehaviour {
 			return true;
 		} else {
 			SetHandsMovingWeight(0);
+			return false;
+		}
+	}
+
+	public bool PlayerLeftInteracting()
+	{
+		currentBaseState = animator.GetCurrentAnimatorStateInfo(0);
+		if (currentBaseState.fullPathHash == leftInteractingState)
+		{
+			return true;
+		} else {
 			return false;
 		}
 	}
@@ -84,6 +96,16 @@ public class NOCPlayerAnimator : MonoBehaviour {
 				animator.SetBool("isRightHandHold", true);
 			}
 		}
+	}
+
+	public void PlayerLeftInteractionOn()
+	{
+		animator.SetTrigger("LeftInteractionOn");
+	}
+
+	public void PlayerLeftInteractionOff()
+	{
+		animator.SetTrigger("LeftInteractionOff");
 	}
 
 	public void PlayerHorizontalRightSlash()

@@ -4,21 +4,34 @@ using UnityEngine;
 
 public class NOCPlayerHands : MonoBehaviour {
 
-	private NOCPlayerAnimator playerAnimator;
-	private static string leftHandLookUp = "Armature/Root/Hip/Spine/Upper_Arm_L/Lower_Arm_L/Hand_L/LeftHandHold";
-	private static string rightHandLookUp = "Armature/Root/Hip/Spine/Upper_Arm_R/Lower_Arm_R/Hand_R/RightHandHold";
-	private Transform leftHandHold;
-	private Transform rightHandHold;
+	public float turnSmoothTime = 0.01f;
+	NOCPlayerAnimator playerAnimator;
+	static string leftHandLookUp = "Armature/Root/Hip/Spine/Upper_Arm_L/Lower_Arm_L/Hand_L/LeftHandHold";
+	static string rightHandLookUp = "Armature/Root/Hip/Spine/Upper_Arm_R/Lower_Arm_R/Hand_R/RightHandHold";
+	Transform leftHandHold;
+	Transform rightHandHold;
+	float turnSmoothVelocity;
+	bool actionOn = true;
+
+	NOCPlayerCameraManager playerCameraManager;
 
 	void Start () {
 		playerAnimator = GetComponent<NOCPlayerAnimator>();
 		leftHandHold = gameObject.transform.Find(leftHandLookUp);
 		rightHandHold = gameObject.transform.Find(rightHandLookUp);
+		playerCameraManager = GetComponent<NOCPlayerCameraManager> ();
 	}
 	
 	public void GetHandsInputAndAct()
 	{
-		if (playerAnimator.PlayerCanMove())
+		if (playerAnimator.PlayerLeftInteracting() && actionOn) {
+			AdjustFacingWithCamera();
+			if (!Input.GetButton("Fire1"))
+			{
+				playerAnimator.PlayerLeftInteractionOff();
+				actionOn = false;
+			}
+		} else if (playerAnimator.PlayerCanMove())
 		{
 			if (Input.GetButtonDown("LeftHandAct"))
 			{
@@ -39,12 +52,13 @@ public class NOCPlayerHands : MonoBehaviour {
 
 			if (Input.GetButtonDown("Fire1"))
 			{
-				playerAnimator.PlayerHorizontalLeftSlash();
+				playerAnimator.PlayerLeftInteractionOn();
+				actionOn = true;
 			}
 		}
 	}
 
-	private void GrabWithLeftHand(bool isLeft)
+	void GrabWithLeftHand(bool isLeft)
 	{
 		if (isLeft)
 		{
@@ -54,5 +68,11 @@ public class NOCPlayerHands : MonoBehaviour {
 			GameObject sword = GameObject.Find("NOCSwordHandle2");
 			sword.GetComponent<NOCHandle>().GrabHandle(rightHandHold, rightHandHold);
 		}
+	}
+
+	void AdjustFacingWithCamera()
+	{
+		float targetRotation = playerCameraManager.GetPlayerCameraEulerY();
+			transform.eulerAngles = Vector3.up * Mathf.SmoothDampAngle(transform.eulerAngles.y, targetRotation, ref turnSmoothVelocity, turnSmoothTime);
 	}
 }

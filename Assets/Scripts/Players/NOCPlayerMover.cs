@@ -23,9 +23,9 @@ public class NOCPlayerMover : MonoBehaviour {
 	Vector2 rollDir = Vector2.zero;
 
 
-	private CharacterController characterController;
-	private NOCPlayerCameraManager playerCameraManager;
-	private NOCPlayerAnimator playerAnimator;
+	CharacterController characterController;
+	NOCPlayerCameraManager playerCameraManager;
+	NOCPlayerAnimator playerAnimator;
 	// Use this for initialization
 	void Start () {
 		characterController = GetComponent<CharacterController> ();
@@ -64,7 +64,7 @@ public class NOCPlayerMover : MonoBehaviour {
 		playerAnimator.PlayerMoverAnimation(speedPercent, speedSmoothTime, walkSpeed/defaultWalkSpeed);
 	}
 
-	private void RollPlayer(Vector2 inputDir)
+	void RollPlayer(Vector2 inputDir)
 	{
 		if (inputDir != Vector2.zero) {
 			float targetRotation = Mathf.Atan2 (inputDir.x, inputDir.y) * Mathf.Rad2Deg + playerCameraManager.GetPlayerCameraEulerY();
@@ -85,7 +85,7 @@ public class NOCPlayerMover : MonoBehaviour {
 		}		
 	}
 
-	private void MovePlayer(Vector2 inputDir, bool running)
+	void MovePlayer(Vector2 inputDir, bool running)
 	{
 		if (inputDir != Vector2.zero) {
 			float targetRotation = Mathf.Atan2 (inputDir.x, inputDir.y) * Mathf.Rad2Deg + playerCameraManager.GetPlayerCameraEulerY();
@@ -106,7 +106,7 @@ public class NOCPlayerMover : MonoBehaviour {
 		}
 	}
 
-	private float GetModifiedSmoothTime(float smoothTime) {
+	float GetModifiedSmoothTime(float smoothTime) {
 		if (characterController.isGrounded) {
 			return smoothTime;
 		}

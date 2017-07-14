@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class NOCPlayerCameraManager : MonoBehaviour {
 
-	private Transform cameraTransform;
+	Transform cameraTransform;
 
 	// Use this for initialization
 	void Start () {
